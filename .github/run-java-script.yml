@@ -1,0 +1,29 @@
+name: Run Java Script
+
+on:
+  push:
+    branches:
+      - main  # O usa la rama principal que estés usando
+  workflow_dispatch:  # Permite ejecutar manualmente el flujo de trabajo
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      # Paso 1: Configurar Java
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'  # O usa la versión de Java que prefieras
+
+      # Paso 2: Descargar el repositorio
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Paso 3: Compilar el código Java
+      - name: Compile Java code
+        run: javac URLRedirect.java
+
+      # Paso 4: Ejecutar el script Java
+      - name: Run Java code
+        run: java URLRedirect
